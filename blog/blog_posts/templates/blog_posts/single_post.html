@@ -1,0 +1,14 @@
+{% extends "blog_posts/layout.html" %}
+
+{% block title %}
+    {{ single_post.title }}
+{% endblock %}
+
+{% block content %}
+    <div class="bg-white p-8 rounded-lg shadow-md">
+        <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ single_post.title }}</h2>
+        <h4 class="text-sm text-gray-500 mb-2">Published: {{ single_post.date|date:"F d, Y" }}</h4>
+        <hr class="my-6 border-gray-200">
+        <p class="text-gray-700 leading-relaxed">{{ single_post.body }}</p>
+    </div>
+{% endblock %}
