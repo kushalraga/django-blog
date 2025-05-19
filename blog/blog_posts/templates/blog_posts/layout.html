@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+      }
+    </style>
+</head>
+<body class="bg-gray-100">
+    <header class="bg-white border-b border-gray-200 py-4 mb-8">
+        <div class="container mx-auto px-4 flex justify-between items-center">
+            <a href="#" class="text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">My Blog</a>
+            <nav>
+                <ul class="flex space-x-6">
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Home</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Articles</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">About</a></li>
+                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-4 py-8">
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer class="bg-gray-100 text-gray-600 py-6 mt-10 border-t border-gray-200">
+        <div class="container mx-auto px-4 text-center">
+            <p>&copy; {% now "Y" %} My Blog. All rights reserved.</p>
+            <p class="mt-2">
+                <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors duration-300">Privacy Policy</a> |
+                <a href="#" class="text-blue-600 hover:text-blue-800 transition-colors duration-300">Terms of Service</a>
+            </p>
+        </div>
+    </footer>
+</body>
+</html>
