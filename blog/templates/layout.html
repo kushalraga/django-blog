@@ -18,10 +18,10 @@
             <a href="#" class="text-xl font-semibold text-gray-800 hover:text-blue-600 transition-colors duration-300">My Blog</a>
             <nav>
                 <ul class="flex space-x-6">
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Home</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Articles</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">About</a></li>
-                    <li><a href="#" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Contact</a></li>
+                    <li><a href="{% url 'blog_home' %}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Home</a></li>
+                    <li><a href="{% url 'register_users' %}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Register</a></li>
+                    <li><a href="{% url 'user_login' %}" class="text-gray-600 hover:text-blue-600 transition-colors duration-300">Login</a></li>
+                    
                 </ul>
             </nav>
         </div>
