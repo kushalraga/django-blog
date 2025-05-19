@@ -1,14 +1,20 @@
 {% extends "blog_posts/layout.html" %}
-
 {% block title %}
     {{ single_post.title }}
 {% endblock %}
 
 {% block content %}
     <div class="bg-white p-8 rounded-lg shadow-md">
-        <h2 class="text-3xl font-bold text-gray-900 mb-4">{{ single_post.title }}</h2>
-        <h4 class="text-sm text-gray-500 mb-2">Published: {{ single_post.date|date:"F d, Y" }}</h4>
+        <h1 class="text-3xl font-bold text-gray-900 mb-4">{{ single_post.title }}</h1>
+        <p class="text-sm text-gray-500 mb-6">Published: {{ single_post.date|date:"F d, Y" }}</p>
         <hr class="my-6 border-gray-200">
+
+        {% if single_post.featured_image %}
+            <div class="mb-8">
+                <img src="{{ single_post.featured_image.url }}" alt="{{ single_post.title }}" class="rounded-md w-full h-auto object-cover">
+            </div>
+        {% endif %}
+
         <p class="text-gray-700 leading-relaxed">{{ single_post.body }}</p>
     </div>
 {% endblock %}
