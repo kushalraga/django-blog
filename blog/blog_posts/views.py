@@ -1,8 +1,8 @@
-from django.shortcuts import render, get_object_or_404
+from django.shortcuts import render, get_object_or_404, redirect
 from .models import BlogPost
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
-
+from . import forms
 # Create your views here.
 def blog_home(request):
     posts = BlogPost.objects.all()
@@ -14,4 +14,13 @@ def single_post_page(request, post_id):
 
 @login_required(login_url='/users/login/')
 def new_post(request):
-    return render(request, 'blog_posts/new_post.html')
+    if request.method == "POST":
+        form = forms.CreatePost(request.POST, request.FILES)
+        if form.is_valid():
+            newpost = form.save(commit=False)
+            newpost.author = request.user
+            newpost.save()
+            return redirect('blog_home')  # Corrected line
+    else: 
+        form = forms.CreatePost()
+    return render(request, 'blog_posts/new_post.html', {'form': form})

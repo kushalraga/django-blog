@@ -2,4 +2,46 @@
 
 {% block title %}New Post{% endblock %}
 
-{% block content %}New Post{% endblock %}
+{% block content %}
+    <div class="flex justify-center items-center bg-gray-100 py-10">
+        <div class="bg-gradient-to-br from-purple-100 to-pink-100 p-8 rounded-xl shadow-2xl w-full max-w-2xl">
+            <h2 class="text-3xl font-extrabold text-gray-900 mb-8 text-center">Create a New Post</h2>
+            <form action="{% url 'new_post' %}" method="POST" enctype="multipart/form-data" class="space-y-8">
+                {% csrf_token %}
+                {% for field in form %}
+                    <div class="space-y-3">
+                        <label for="{{ field.id_for_label }}" class="block text-lg font-semibold text-gray-700">{{ field.label }}</label>
+                        {{ field.errors }}
+                         {% if field.name == 'body' %}
+                            <textarea
+                                name="{{ field.name }}"
+                                id="{{ field.id_for_label }}"
+                                class="appearance-none block w-full px-5 py-3 border rounded-xl shadow-inner placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                placeholder="{{ field.label }}"
+                                rows="6" 
+                            ></textarea>
+                         {% else %}
+                            <input 
+                                type="{{ field.field.widget.input_type }}"
+                                name="{{ field.name }}"
+                                id="{{ field.id_for_label }}"
+                                class="appearance-none block w-full px-5 py-3 border rounded-xl shadow-inner placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+                                placeholder="{{ field.label }}"
+                            >
+                         {% endif %}
+                        {% if field.errors %}
+                            <p class="text-red-500 text-sm mt-2">
+                                {% for error in field.errors %}
+                                    {{ error }}
+                                {% endfor %}
+                            </p>
+                        {% endif %}
+                    </div>
+                {% endfor %}
+                <button type="submit" class="w-full bg-gradient-to-r from-purple-500 to-pink-500 hover:from-purple-600 hover:to-pink-600 text-white font-bold py-3 px-6 rounded-full shadow-md transition duration-300 ease-in-out">
+                    Publish Post
+                </button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
